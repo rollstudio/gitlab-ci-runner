@@ -31,6 +31,7 @@ RUN cd /tmp/ruby/ruby-1.9.3-p392 && ./configure --disable-install-rdoc && make &
 # Fix upstart under a virtual host https://github.com/dotcloud/docker/issues/1024
 RUN dpkg-divert --local --rename --add /sbin/initctl && rm -f /sbin/initctl && ln -s /bin/true /sbin/initctl
 
+RUN apt-get install -y libjpeg-dev # needed for PIL
 # Install packages commonly required to test Rails projects before the test run starts
 # If they are not here you have to add them to the test script in the project settings
 RUN apt-get install -y libqtwebkit-dev # test with capybara
