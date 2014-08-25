@@ -54,6 +54,10 @@ RUN echo "host all all 127.0.0.1/32 trust" >> /etc/postgresql/9.1/main/pg_hba.co
 RUN echo "host all all  ::1/128 trust" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN /etc/init.d/postgresql start && su postgres -c "psql -c \"create user root;\"" && su postgres -c "psql -c \"alter user root createdb;\"" && su postgres -c "psql -c \"create database roottestdb owner root;\""
 
+# install python deps
+RUN apt-get install -y python-pip
+RUN pip install virtualenv
+
 # Prepare a known host file for non-interactive ssh connections
 RUN mkdir -p /root/.ssh
 RUN touch /root/.ssh/known_hosts
