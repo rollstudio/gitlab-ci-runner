@@ -58,6 +58,8 @@ RUN /etc/init.d/postgresql start && su postgres -c "psql -c \"create user root;\
 RUN apt-get install -y python-pip
 RUN pip install virtualenv
 
+RUN apt-get install -y python-dev
+
 # Prepare a known host file for non-interactive ssh connections
 RUN mkdir -p /root/.ssh
 RUN touch /root/.ssh/known_hosts
